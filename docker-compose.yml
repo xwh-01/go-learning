@@ -23,8 +23,8 @@ services:
     image: mysql:8
     container_name: exchange-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 123456  # 生产环境务必使用强密码！
-      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change-me}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-test}
     ports:
       - "3306:3306"
     volumes:

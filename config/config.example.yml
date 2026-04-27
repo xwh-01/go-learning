@@ -6,7 +6,7 @@ app:
   log_file: logs/app.log
 
 database:
-  dsn: "root:123456@tcp(mysql:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+  dsn: "root:change-me@tcp(mysql:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
   max_idle_conns: 10
   max_open_conns: 100
   conn_max_lifetime: 3600
@@ -18,5 +18,5 @@ redis:
   pool_size: 10
 
 jwt:
-  secret: "your-actual-secret-key-here"
+  secret: "change-this-jwt-secret"
   expiration_hours: 72

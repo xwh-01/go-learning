@@ -75,7 +75,7 @@ app:
   port: :3000
 
 database:
-  dsn: "root:123456@tcp(mysql:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+  dsn: "root:change-me@tcp(mysql:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
 
 redis:
   addr: redis:6379
@@ -85,7 +85,7 @@ redis:
 
 ```yaml
 database:
-  dsn: "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+  dsn: "root:change-me@tcp(127.0.0.1:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
 
 redis:
   addr: 127.0.0.1:6379
@@ -153,7 +153,7 @@ Content-Type: application/json
 ```json
 {
   "username": "test",
-  "password": "123456",
+  "password": "change-me",
   "email": "test@example.com"
 }
 ```
@@ -170,7 +170,7 @@ Content-Type: application/json
 ```json
 {
   "username": "test",
-  "password": "123456"
+  "password": "change-me"
 }
 ```
 

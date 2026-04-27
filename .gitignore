@@ -12,6 +12,7 @@ logs/
 
 config/config.local.yml
 config/config.prod.yml
+config/config.yml
 
 .DS_Store
 .vscode/
