@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  # 你的Go应用服务
+  app:
+    build: .  # 使用当前目录的Dockerfile构建镜像
+    container_name: exchange-app
+    ports:
+      - "3000:3000"  # 宿主机端口:容器端口
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - TZ=Asia/Shanghai  # 设置容器时区
+    # 让应用与数据库、Redis在同一个网络，可以用服务名互相访问
+    networks:
+      - exchange-network
+    # 覆写启动命令，确保数据库就绪后再启动Go应用
+    command: sh -c "sleep 2 && ./server"
+    restart: unless-stopped
+
+  # MySQL数据库服务
+  mysql:
+    image: mysql:8
+    container_name: exchange-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456  # 生产环境务必使用强密码！
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql  # 数据持久化
+      - ./docker-initdb.d:/docker-entrypoint-initdb.d:ro  # 初始化SQL脚本
+    networks:
+      - exchange-network
+    restart: unless-stopped
+
+  # Redis缓存服务
+  redis:
+    image: redis:7-alpine
+    container_name: exchange-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - exchange-network
+    restart: unless-stopped
+
+# 定义命名网络和卷，便于管理
+networks:
+  exchange-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:

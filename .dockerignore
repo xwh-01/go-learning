@@ -1,0 +1,7 @@
+.git
+.vscode
+*.log
+.DS_Store
+tmp/
+coverage.out
+docker-compose.debug.yml

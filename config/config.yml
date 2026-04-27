@@ -1,0 +1,22 @@
+app:
+  name: CurrencyExchangeApp
+  port: :3000
+  mode: debug
+  log_level: info
+  log_file: logs/app.log
+
+database:
+  dsn: "root:123456@tcp(mysql:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+  max_idle_conns: 10
+  max_open_conns: 100
+  conn_max_lifetime: 3600
+
+redis:
+  addr: redis:6379
+  password: ""
+  db: 0
+  pool_size: 10
+
+jwt:
+  secret: "your-actual-secret-key-here"
+  expiration_hours: 72
